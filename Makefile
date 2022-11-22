@@ -23,8 +23,12 @@ test-acceptance: ## runs all tests, including the acceptance tests
 	@TF_ACC=1 $(go_test) go test  -v -cover $(shell go list ./... | grep -v vendor)
 
 .PHONY: build
-build: ## build binary
+build:
+## build binary
 	@go build -o build/$(BASE_BINARY_NAME) .
+## build binary to local
+# @go build -o ~/.terraform.d/plugins/local/tiennguyenskedulo/looker/${VERSION}/darwin_amd64/${BASE_BINARY_NAME} .
+
 
 .PHONY: docs
 docs: ## generate docs
@@ -41,4 +45,4 @@ check-mod: ## check go.mod is up-to-date
 
 .PHONY: install
 install:
-	@go build -o ~/.terraform.d/plugins/registry.terraform.io/hirosassa/looker/${VERSION}/darwin_amd64/terraform-provider-looker
+	@go build -o ~/.terraform.d/plugins/registry.terraform.io/tiennguyenskedulo/looker/${VERSION}/darwin_amd64/terraform-provider-looker
